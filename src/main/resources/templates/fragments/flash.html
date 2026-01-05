@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="flash" class="flash" th:if="${param.error}">
+    <span th:text="#{message.error}">Something went wrong.</span>
+</div>
+</body>
+</html>

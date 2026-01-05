@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="languageToggle" class="language-toggle">
+    <a th:href="@{${#httpServletRequest.requestURI}(lang='en')}" class="button button-outline">EN</a>
+    <a th:href="@{${#httpServletRequest.requestURI}(lang='hi')}" class="button button-outline">हिंदी</a>
+</div>
+</body>
+</html>

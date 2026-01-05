@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<body>
+<section layout:fragment="content">
+    <h1 th:text="${task.title}">Task</h1>
+    <div class="card">
+        <p th:text="${task.description}">Description</p>
+        <p><strong th:text="#{task.status}">Status</strong>: <span th:text="${task.status}"></span></p>
+        <p><strong th:text="#{task.priority}">Priority</strong>: <span th:text="${task.priority}"></span></p>
+        <p><strong th:text="#{task.type}">Type</strong>: <span th:text="${task.type}"></span></p>
+        <p><strong th:text="#{task.estimate}">Estimate</strong>: <span th:text="${task.estimateMinutes}"></span> min</p>
+    </div>
+
+    <div class="card">
+        <h3 th:text="#{timesheet.log}">Log Hours</h3>
+        <form th:action="@{/tasks/{id}/time(id=${task.id})}" method="post" th:object="${timeLogForm}">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label th:text="#{timesheet.date}">Date</label>
+                    <input type="date" th:field="*{logDate}">
+                </div>
+                <div class="form-group">
+                    <label th:text="#{timesheet.minutes}">Minutes</label>
+                    <input type="number" th:field="*{minutes}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label th:text="#{timesheet.notes}">Notes</label>
+                <textarea th:field="*{notes}"></textarea>
+            </div>
+            <input type="hidden" th:field="*{taskId}">
+            <button class="button button-primary" type="submit" th:text="#{action.save}">Save</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3 th:text="#{timesheet.entries}">Entries</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{timesheet.date}">Date</th>
+                <th th:text="#{timesheet.minutes}">Minutes</th>
+                <th th:text="#{timesheet.notes}">Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="log : ${logs}">
+                <td th:text="${log.logDate}">Date</td>
+                <td th:text="${log.minutes}">0</td>
+                <td th:text="${log.notes}">Notes</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

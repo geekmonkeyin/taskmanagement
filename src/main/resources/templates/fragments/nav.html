@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="nav">
+    <a th:classappend="${#httpServletRequest.requestURI.startsWith('/dashboard')} ? 'active' : ''" th:href="@{/dashboard}" th:text="#{nav.dashboard}">Dashboard</a>
+    <a th:classappend="${#httpServletRequest.requestURI.startsWith('/backlog')} ? 'active' : ''" th:href="@{/backlog}" th:text="#{nav.backlog}">Backlog</a>
+    <a th:classappend="${#httpServletRequest.requestURI.startsWith('/sprints')} ? 'active' : ''" th:href="@{/sprints}" th:text="#{nav.sprints}">Sprints</a>
+    <a th:classappend="${#httpServletRequest.requestURI.startsWith('/board')} ? 'active' : ''" th:href="@{/board}" th:text="#{nav.board}">Board</a>
+    <a th:classappend="${#httpServletRequest.requestURI.startsWith('/timesheet')} ? 'active' : ''" th:href="@{/timesheet}" th:text="#{nav.timesheet}">Timesheet</a>
+    <a th:classappend="${#httpServletRequest.requestURI.startsWith('/reports')} ? 'active' : ''" th:href="@{/reports/sprint?sprintId=}" th:text="#{nav.reports}">Reports</a>
+    <a th:classappend="${#httpServletRequest.requestURI.startsWith('/projects')} ? 'active' : ''" th:href="@{/projects}" th:text="#{nav.projects}">Projects</a>
+    <a th:classappend="${#httpServletRequest.requestURI.startsWith('/teams')} ? 'active' : ''" th:href="@{/teams}" th:text="#{nav.teams}">Teams</a>
+    <a th:classappend="${#httpServletRequest.requestURI.startsWith('/users')} ? 'active' : ''" th:href="@{/users}" th:text="#{nav.users}">Users</a>
+</nav>
+</body>
+</html>
