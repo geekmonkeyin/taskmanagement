@@ -6,6 +6,7 @@
     <div class="card">
         <h3 th:text="#{team.create}">Create Team</h3>
         <form th:action="@{/teams}" method="post" th:object="${teamForm}">
+            <div th:replace="~{fragments/csrf :: csrf}"></div>
             <div class="form-grid">
                 <div class="form-group">
                     <label th:text="#{team.name}">Name</label>

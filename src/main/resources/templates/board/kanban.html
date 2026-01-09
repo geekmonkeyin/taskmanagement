@@ -10,6 +10,7 @@
                 <h4 th:text="${task.title}">Task</h4>
                 <p th:text="${task.description}">Description</p>
                 <form th:action="@{/board/{id}/status(id=${task.id})}" method="post" th:object="${statusForm}">
+                    <div th:replace="~{fragments/csrf :: csrf}"></div>
                     <input type="hidden" name="sprintId" th:value="${sprintId}">
                     <select th:field="*{status}">
                         <option th:each="s : ${T(com.geekmonkey.taskmanagement.domain.TaskStatus).values()}" th:value="${s}" th:text="${s}"></option>

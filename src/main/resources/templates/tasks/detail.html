@@ -14,6 +14,7 @@
     <div class="card">
         <h3 th:text="#{timesheet.log}">Log Hours</h3>
         <form th:action="@{/tasks/{id}/time(id=${task.id})}" method="post" th:object="${timeLogForm}">
+            <div th:replace="~{fragments/csrf :: csrf}"></div>
             <div class="form-grid">
                 <div class="form-group">
                     <label th:text="#{timesheet.date}">Date</label>

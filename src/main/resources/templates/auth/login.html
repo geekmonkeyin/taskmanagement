@@ -16,6 +16,7 @@
         <p th:text="#{login.subtitle}">Sign in to continue</p>
     </div>
     <form th:action="@{/login}" method="post">
+        <div th:replace="~{fragments/csrf :: csrf}"></div>
         <div class="form-group">
             <label th:text="#{login.email}">Email</label>
             <input type="email" name="username" required>
