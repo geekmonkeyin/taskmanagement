@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<body>
+<section layout:fragment="content">
+    <h1 th:text="#{nav.timesheet}">Timesheet</h1>
+    <div class="card">
+        <h3 th:text="#{timesheet.week}">Weekly Summary</h3>
+        <p><span th:text="${start}"></span> - <span th:text="${end}"></span></p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{timesheet.date}">Date</th>
+                <th th:text="#{timesheet.minutes}">Minutes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="entry : ${totals}">
+                <td th:text="${entry.key}">Date</td>
+                <td th:text="${entry.value}">0</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h3 th:text="#{timesheet.entries}">Entries</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{timesheet.date}">Date</th>
+                <th th:text="#{timesheet.minutes}">Minutes</th>
+                <th th:text="#{timesheet.notes}">Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="log : ${logs}">
+                <td th:text="${log.logDate}">Date</td>
+                <td th:text="${log.minutes}">0</td>
+                <td th:text="${log.notes}">Notes</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

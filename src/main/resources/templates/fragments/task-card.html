@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="taskCard(task)" class="card task-card">
+    <div class="card-header">
+        <h4 th:text="${task.title}">Task Title</h4>
+        <span class="pill" th:text="${task.priority}">Priority</span>
+    </div>
+    <p th:text="${task.description}">Description</p>
+    <div class="card-footer">
+        <span th:text="${task.type}">Type</span>
+        <span th:text="${task.status}">Status</span>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <title>404</title>
+</head>
+<body class="error-page">
+<div class="card">
+    <h1>404</h1>
+    <p th:text="#{error.404}">Page not found.</p>
+    <a class="button button-primary" th:href="@{/dashboard}">Back to Dashboard</a>
+</div>
+</body>
+</html>

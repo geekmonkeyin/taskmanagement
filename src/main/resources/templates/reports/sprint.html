@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<body>
+<section layout:fragment="content">
+    <h1 th:text="#{nav.reports}">Reports</h1>
+    <div class="card">
+        <h3 th:text="#{report.sprint}">Sprint Report</h3>
+        <p><strong>Total:</strong> <span th:text="${report.totalTasks}">0</span></p>
+        <p><strong>Completed:</strong> <span th:text="${report.completedTasks}">0</span></p>
+        <p><strong>Carryover:</strong> <span th:text="${report.carryoverTasks}">0</span></p>
+        <p><strong>Progress:</strong> <span th:text="${report.progressPercent}">0</span>%</p>
+        <p><strong>Average cycle (min):</strong> <span th:text="${report.averageCycleMinutes}">0</span></p>
+    </div>
+    <div class="card">
+        <h3 th:text="#{report.blocked}">Blocked Tasks</h3>
+        <ul>
+            <li th:each="task : ${report.blockedTasks}" th:text="${task.title}">Task</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3 th:text="#{report.topUsers}">Top Users by Hours</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>User</th>
+                <th th:text="#{timesheet.minutes}">Minutes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="entry : ${report.topUsers}">
+                <td th:text="${entry.userId}">User</td>
+                <td th:text="${entry.minutes}">0</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

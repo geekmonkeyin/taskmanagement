@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<body>
+<section layout:fragment="content">
+    <h1 th:text="#{nav.board}">Board</h1>
+    <div class="kanban">
+        <div class="column" th:each="status : ${T(com.geekmonkey.taskmanagement.domain.TaskStatus).values()}">
+            <h3 th:text="${status}">Status</h3>
+            <div th:each="task : ${tasks}" th:if="${task.status} == ${status}" class="card">
+                <h4 th:text="${task.title}">Task</h4>
+                <p th:text="${task.description}">Description</p>
+                <form th:action="@{/board/{id}/status(id=${task.id})}" method="post" th:object="${statusForm}">
+                    <div th:replace="~{fragments/csrf :: csrf}"></div>
+                    <input type="hidden" name="sprintId" th:value="${sprintId}">
+                    <select th:field="*{status}">
+                        <option th:each="s : ${T(com.geekmonkey.taskmanagement.domain.TaskStatus).values()}" th:value="${s}" th:text="${s}"></option>
+                    </select>
+                    <input type="text" th:field="*{reason}" th:placeholder="#{task.blockedReason}">
+                    <button class="button button-outline" type="submit" th:text="#{action.move}">Move</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

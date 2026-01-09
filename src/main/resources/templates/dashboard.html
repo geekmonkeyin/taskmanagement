@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<body>
+<section layout:fragment="content">
+    <h1 th:text="#{nav.dashboard}">Dashboard</h1>
+    <div class="card-grid">
+        <div class="card">
+            <h3 th:text="#{dashboard.inprogress}">In Progress</h3>
+            <p class="metric" th:text="${inProgressTasks}">0</p>
+        </div>
+        <div class="card">
+            <h3 th:text="#{dashboard.blocked}">Blocked</h3>
+            <p class="metric" th:text="${blockedTasks}">0</p>
+        </div>
+        <div class="card">
+            <h3 th:text="#{dashboard.done}">Done</h3>
+            <p class="metric" th:text="${doneTasks}">0</p>
+        </div>
+    </div>
+    <div class="card">
+        <h3 th:text="#{dashboard.welcome}">Welcome</h3>
+        <p th:text="${user.fullName}">User</p>
+        <p th:if="${team != null}" th:text="${team.name}">Team</p>
+    </div>
+</section>
+</body>
+</html>

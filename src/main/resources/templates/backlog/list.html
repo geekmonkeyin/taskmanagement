@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<body>
+<section layout:fragment="content">
+    <h1 th:text="#{nav.backlog}">Backlog</h1>
+    <div class="card">
+        <h3 th:text="#{task.create}">Create Task</h3>
+        <form th:action="@{/backlog}" method="post" th:object="${taskForm}">
+            <div th:replace="~{fragments/csrf :: csrf}"></div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label th:text="#{task.title}">Title</label>
+                    <input type="text" th:field="*{title}">
+                </div>
+                <div class="form-group">
+                    <label th:text="#{task.priority}">Priority</label>
+                    <select th:field="*{priority}">
+                        <option value="LOW">LOW</option>
+                        <option value="MEDIUM">MEDIUM</option>
+                        <option value="HIGH">HIGH</option>
+                        <option value="URGENT">URGENT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label th:text="#{task.type}">Type</label>
+                    <select th:field="*{type}">
+                        <option value="TASK">TASK</option>
+                        <option value="BUG">BUG</option>
+                        <option value="STORY">STORY</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label th:text="#{task.status}">Status</label>
+                    <select th:field="*{status}">
+                        <option value="TODO">TODO</option>
+                        <option value="IN_PROGRESS">IN_PROGRESS</option>
+                        <option value="BLOCKED">BLOCKED</option>
+                        <option value="REVIEW">REVIEW</option>
+                        <option value="DONE">DONE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label th:text="#{task.project}">Project</label>
+                <select th:field="*{projectId}">
+                    <option value="">--</option>
+                    <option th:each="project : ${projects}" th:value="${project.id}" th:text="${project.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label th:text="#{task.description}">Description</label>
+                <textarea th:field="*{description}"></textarea>
+            </div>
+            <input type="hidden" th:field="*{teamId}">
+            <input type="hidden" th:field="*{reporterId}">
+            <button class="button button-primary" type="submit" th:text="#{action.save}">Save</button>
+        </form>
+    </div>
+    <div class="card">
+        <h3 th:text="#{task.backlog}">Backlog Tasks</h3>
+        <div class="task-grid">
+            <div th:each="task : ${tasks}" th:replace="~{fragments/task-card :: taskCard(${task})}"></div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

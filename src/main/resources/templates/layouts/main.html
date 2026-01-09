@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${pageTitle} ?: 'Geekmonkey Task Management'">Geekmonkey Task Management</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="app-header">
+    <div class="brand">
+        <span class="logo">Geekmonkey</span>
+    </div>
+    <nav th:replace="~{fragments/nav :: nav}"></nav>
+    <div class="header-actions">
+        <div th:replace="~{fragments/language-toggle :: languageToggle}"></div>
+        <a class="button button-outline" th:href="@{/logout}">Logout</a>
+    </div>
+</header>
+
+<main class="container" layout:fragment="content">
+    <!-- Page content -->
+</main>
+
+<footer class="app-footer">
+    <span>Geekmonkey Task Management</span>
+</footer>
+</body>
+</html>
